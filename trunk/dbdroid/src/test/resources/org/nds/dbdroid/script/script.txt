@@ -1,0 +1,22 @@
+-- COMMENT
+CREATE DATABASE Test;
+CREATE TABLE table1 ('_id' INTEGER,
+field1 STRING,
+field2 BYTE_ARRAY
+); 
+CREATE TABLE table2 ('_id' INTEGER,
+field1 INTEGER,
+field2 STRING
+); 
+// OTHER COMMENT
+INSERT INTO Table1 (_id, field1, field2) VALUES (1, 'field1_value1', '<tag1>field2_value1</tag1>');INSERT INTO Table2 (_id, field_1, field_2)
+VALUES (1, 999, 'field2_value2');
+
+# QUERIES FOR DAO
+INSERT INTO Entity1 (_id, name) VALUES (1, 'name1');
+INSERT INTO Entity1 (_id, name) VALUES (2, 'name2');
+INSERT INTO Entity2 (_id, time) VALUES (10, 123456789);
+INSERT INTO Entity2 (_id, time) VALUES (11, 987654321);
+INSERT INTO Entity2 (_id, time) VALUES (12, 815975434);
+INSERT INTO Entity3 (_id, name, document) VALUES (20, 'name_1', '<tag1>field_value1</tag1>');
+INSERT INTO Entity3 (_id, name, document) VALUES (21, 'name_2', '<tag1>field_value2</tag1>');

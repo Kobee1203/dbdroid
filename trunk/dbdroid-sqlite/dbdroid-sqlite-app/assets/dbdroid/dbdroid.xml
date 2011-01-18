@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dbdroid:dbdroid-configuration
+	xmlns:dbdroid="http://www.nds.org/dbdroid" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.nds.org/dbdroid dbdroid.xsd">
+
+	<dbdroid:dao class="org.nds.dbdroid.sqlite.dao.Object1Dao" />
+	<dbdroid:dao class="org.nds.dbdroid.sqlite.test.dao.TestDao" />
+
+	<dbdroid:properties>
+		<dbdroid:property name="dbdroid.show_query" value="true" />
+		<dbdroid:property name="dbdroid.generate">reset</dbdroid:property>
+	</dbdroid:properties>
+</dbdroid:dbdroid-configuration>
