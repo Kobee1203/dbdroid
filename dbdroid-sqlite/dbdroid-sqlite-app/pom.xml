@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.nds.dbdroid.sqlite</groupId>
-        <artifactId>dbdroid-sqlite-parent</artifactId>
+        <artifactId>dbdroid-sqlite</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     
@@ -32,7 +32,7 @@
         
         <dependency>
 	        <groupId>org.nds.dbdroid.sqlite</groupId>
-	    	<artifactId>dbdroid-sqlite</artifactId>
+	    	<artifactId>dbdroid-sqlite-core</artifactId>
 	    	<version>${project.version}</version>
         </dependency>
     </dependencies>
