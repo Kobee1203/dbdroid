@@ -48,7 +48,6 @@ public class ConfigXMLHandler extends DefaultHandler {
         } else {
             this.classLoader = Thread.currentThread().getContextClassLoader();
         }
-        assert classLoader != null;
     }
 
     @Override
