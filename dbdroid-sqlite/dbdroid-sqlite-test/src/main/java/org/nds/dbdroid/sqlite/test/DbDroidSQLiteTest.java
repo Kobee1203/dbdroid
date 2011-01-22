@@ -53,10 +53,17 @@ public class DbDroidSQLiteTest extends AndroidTestCase {
         ClassPathPackageInfoSource classPathSource = new ClassPathPackageInfoSource();
         // classPathSource.setClassLoader(tmpCtxt.getClassLoader());
 
-        ClassPathPackageInfo cppi = classPathSource.getPackageInfo("org.nds.dbdroid.sqlite.test.dao");
+        ClassPathPackageInfo cppi = classPathSource.getPackageInfo("org.nds.dbdroid.sqlite.dao");
         System.out.println(cppi.getPackageName() + ": " + cppi.getTopLevelClassesRecursive());
 
         for (ClassPathPackageInfo packageInfo : cppi.getSubpackages()) {
+            System.out.println(packageInfo.getPackageName() + ": " + packageInfo.getTopLevelClassesRecursive());
+        }
+        
+        ClassPathPackageInfo cppi2 = classPathSource.getPackageInfo("org.nds.dbdroid.sqlite.test.dao");
+        System.out.println(cppi2.getPackageName() + ": " + cppi2.getTopLevelClassesRecursive());
+
+        for (ClassPathPackageInfo packageInfo : cppi2.getSubpackages()) {
             System.out.println(packageInfo.getPackageName() + ": " + packageInfo.getTopLevelClassesRecursive());
         }
     }*/

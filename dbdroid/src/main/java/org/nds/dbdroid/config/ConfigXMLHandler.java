@@ -1,15 +1,10 @@
 package org.nds.dbdroid.config;
 
-import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -17,6 +12,8 @@ import org.nds.dbdroid.DataBaseManager;
 import org.nds.dbdroid.dao.AndroidDAO;
 import org.nds.logging.Logger;
 import org.nds.logging.LoggerFactory;
+import org.nds.package_info.ClassPathPackageInfo;
+import org.nds.package_info.ClassPathPackageInfoSource;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -172,7 +169,7 @@ public class ConfigXMLHandler extends DefaultHandler {
      * @throws URISyntaxException
      */
     private void retrieveDAOClasses(String packageName) throws ClassNotFoundException, IOException, SAXException, URISyntaxException {
-        String path = packageName.replace('.', '/');
+        /*String path = packageName.replace('.', '/');
         Enumeration<URL> resources = classLoader.getResources(path);
         List<File> dirs = new ArrayList<File>();
         while (resources.hasMoreElements()) {
@@ -181,6 +178,14 @@ public class ConfigXMLHandler extends DefaultHandler {
         }
         for (File directory : dirs) {
             findDAOClasses(directory, packageName);
+        }*/
+    	ClassPathPackageInfoSource classPathSource = new ClassPathPackageInfoSource();
+
+        ClassPathPackageInfo cppi = classPathSource.getPackageInfo(packageName);
+        for (Class<?> clazz : cppi.getTopLevelClassesRecursive()) {
+	        if (AndroidDAO.class.equals(clazz.getSuperclass())) {
+	        	retrieveDAO(clazz);
+	        }
         }
     }
 
@@ -194,7 +199,7 @@ public class ConfigXMLHandler extends DefaultHandler {
      * @throws ClassNotFoundException
      * @throws SAXException
      */
-    private void findDAOClasses(File directory, String packageName) throws ClassNotFoundException, SAXException {
+    /*private void findDAOClasses(File directory, String packageName) throws ClassNotFoundException, SAXException {
         if (!directory.exists()) {
             throw new SAXException("Directory '+" + directory + "' not found.");
         }
@@ -212,20 +217,20 @@ public class ConfigXMLHandler extends DefaultHandler {
                 }
             }
         }
-    }
+    }*/
 
     /**
      * skipped inner, private and anonymous classes (which appear with $ in the class name)
      * 
      * @return
      */
-    private boolean skipInnerClass(String fileName) {
+    /*private boolean skipInnerClass(String fileName) {
         if (skipInnerClass) {
             return !fileName.contains("$");
         } else {
             return true;
         }
-    }
+    }*/
 
     public Map<Class<? extends AndroidDAO<?>>, AndroidDAO<?>> getDaos() {
         return daos;

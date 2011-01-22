@@ -10,4 +10,11 @@ public class Dao3 extends AndroidDAO<Entity3> {
         super(dbManager);
     }
 
+    public class InnerDao3 extends AndroidDAO<Entity3>  {
+
+		public InnerDao3(DataBaseManager dbManager) {
+			super(dbManager);
+		}
+    	
+    }
 }
