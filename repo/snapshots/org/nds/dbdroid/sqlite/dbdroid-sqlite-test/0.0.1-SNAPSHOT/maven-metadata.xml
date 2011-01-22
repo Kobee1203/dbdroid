@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.nds.dbdroid.sqlite</groupId>
+  <artifactId>dbdroid-sqlite-app</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <buildNumber>1</buildNumber>
+    </snapshot>
+    <lastUpdated>20110122142227</lastUpdated>
+  </versioning>
+</metadata>
