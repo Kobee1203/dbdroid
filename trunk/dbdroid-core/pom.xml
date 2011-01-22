@@ -4,12 +4,12 @@
     
     <parent>
         <groupId>org.nds.dbdroid</groupId>
-        <artifactId>dbdroid-parent</artifactId>
+        <artifactId>dbdroid</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     
     <groupId>org.nds.dbdroid</groupId>
-    <artifactId>dbdroid</artifactId>
+    <artifactId>dbdroid-core</artifactId>
     <packaging>jar</packaging>
     <name>Database for Android (dbdroid)</name>
 

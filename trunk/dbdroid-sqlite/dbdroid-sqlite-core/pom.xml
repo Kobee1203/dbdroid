@@ -4,12 +4,12 @@
     
     <parent>
         <groupId>org.nds.dbdroid.sqlite</groupId>
-        <artifactId>dbdroid-sqlite-parent</artifactId>
+        <artifactId>dbdroid-sqlite</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     
     <groupId>org.nds.dbdroid.sqlite</groupId>
-    <artifactId>dbdroid-sqlite</artifactId>
+    <artifactId>dbdroid-sqlite-core</artifactId>
     <packaging>jar</packaging>
     <name>SQLite Database for Android core (dbdroid-sqlite-core)</name>
 
@@ -33,7 +33,7 @@
 
 		<dependency>
             <groupId>org.nds.dbdroid</groupId>
-        	<artifactId>dbdroid</artifactId>
+        	<artifactId>dbdroid-core</artifactId>
         	<version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
