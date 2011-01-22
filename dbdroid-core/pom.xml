@@ -11,7 +11,7 @@
     <groupId>org.nds.dbdroid</groupId>
     <artifactId>dbdroid-core</artifactId>
     <packaging>jar</packaging>
-    <name>Database for Android (dbdroid)</name>
+    <name>Database for Android (dbdroid-core)</name>
 
     <dependencies>
     	<dependency>
