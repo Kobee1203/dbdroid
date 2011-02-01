@@ -122,7 +122,7 @@
 							<tasks>
 								<property name="maven.repo" value="${user.home}/.m2/repository" />
 								<echo message="Maven repo: ${maven.repo}" />
-								<echo message="filename: ${project.artifactId}-${project.parent.version}.${project.packaging}" />
+								<echo message="filename: ${project.artifactId}-${project.version}.${project.packaging}" />
 								
 								<taskdef classname="net.bluecow.googlecode.ant.GoogleCodeUploadTask" classpath="${maven.repo}/net/bluecow/googlecode/ant/ant-googlecode-0.0.2.jar" name="gcupload" />
 								
@@ -130,7 +130,7 @@
 	    						<fail unless="gc.username" message="Missing property 'gc.username' from file 'build.credentials.properties'." />
 	    						<fail unless="gc.password" message="Missing property 'gc.password' from file 'build.credentials.properties'." />
 								
-								<gcupload username="${gc.username}" password="${gc.password}" projectname="${project.artifactId}" filename="${project.artifactId}/target/${project.artifactId}-${project.parent.version}.${project.packaging}" targetfilename="${project.artifactId}-${project.parent.version}.${project.packaging}" summary="Version ${project.parent.version} of ${project.artifactId}" labels="${project.parent.version}, ${project.artifactId}, Database, Entity, DAO, Android, SQL, Sqlite, DatabaseManager, Query, Developer" />
+								<gcupload username="${gc.username}" password="${gc.password}" projectname="${project.artifactId}" filename="${project.artifactId}/target/${project.artifactId}-${project.version}.${project.packaging}" targetfilename="${project.artifactId}-${project.version}.${project.packaging}" summary="Version ${project.version} of ${project.artifactId}" labels="${project.version}, ${project.artifactId}, Database, Entity, DAO, Android, SQL, Sqlite, DatabaseManager, Query, Developer" />
 							</tasks>
 						</configuration>
 						<goals>
