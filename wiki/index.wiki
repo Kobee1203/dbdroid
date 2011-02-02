@@ -8,7 +8,7 @@
 
 *dbdroid* creates a mapping from Java classes to tables of a database, and from Java data types to SQL data types.
 
-dbdroid uses an XML configuration file that declares the DAOs (Data Access Object). Each DAO is associated with a Java class with the Entity annotation. It is this Java class that is mapped to a table in the database.
+*dbdroid* uses an XML configuration file that declares the DAOs (Data Access Object). Each DAO is associated with a Java class with the Entity annotation. It is this Java class that is mapped to a table in the database.
 So we have: a DAO => a Entity => a table.
 
 
