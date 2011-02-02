@@ -1,4 +1,3 @@
-#summary One-sentence summary of this page.
 
 = Introduction =
 
@@ -36,7 +35,7 @@ public class MyEntity {
 
 == Entity fields ==
 
-Each field of a class annotated as Entity corresponds to a column of the table.`*`
+Each field of a class annotated as Entity corresponds to a column of the table.
 So if we have:
 {{{
 @Entity(name="my_entity")
