@@ -1,4 +1,4 @@
-*SUMMARY*
+<p align="center">*Table of Contents*</p>
 <wiki:toc max_depth="1" />
 
 = Introduction =
