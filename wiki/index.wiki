@@ -1,4 +1,4 @@
-*TABLE OF CONTENT*
+<h1>TABLE OF CONTENT</h1>
 
 <wiki:toc max_depth="1" />
 
