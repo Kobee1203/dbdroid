@@ -46,8 +46,26 @@ So if we have:
 {{{
 @Entity(name="my_entity")
 public class MyEntity {
+
     private int myField1;
     private String myField2;
+    
+    // Default Constructor
+    public MyEntity() {
+    }
+    
+    public int getMyField1() {
+        return myField1;
+    }
+    public void setMyField1(int myField1) {
+        this.myField1 = myField1;
+    }
+    public String getMyField2() {
+        return myField2;
+    }
+    public void setMyField2(String myField2) {
+        this.myField2 = myField2;
+    }
 }
 }}}
 Then the table "my_entity" will be defined as having two columns :
