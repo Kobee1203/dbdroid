@@ -36,6 +36,19 @@ public class MyEntity {
 
 == Entity fields ==
 
+Each field of a class annotated as Entity corresponds to a column of the table
+So if we have:
+{{{
+@Entity(name="my_entity")
+public class MyEntity {
+    private int myField1;
+    private String myField2;
+}
+}}}
+Then the table "my_entity" will be defined as having two columns :
+* "myField1" whose data type is Integer, 
+* "myField2" whose data type is String.
+
 == ID Annotation ==
 
 = DAO =
