@@ -16,7 +16,7 @@
 
 So we have: a DAO => a Entity => a table.
 
-= DataBaseManager =
+= Database Manager =
 
 To access a database, you must implement the abstract class `DatabaseManager`.
 Currently, There are only the library [http://code.google.com/p/dbdroid-sqlite/ dbdroid-sqlite] which has an implementation. The class that implements `DatabaseManager` is `SQLiteDataBaseManager`, an implementation for the SQLite database.
