@@ -2,12 +2,18 @@
 
 = Introduction =
 
-Add your content here.
+*dbdroid* is an object-relational mapping (ORM) library for Android, providing a framework for mapping an object-oriented domain model to a traditional relational database.
+
+*dbdroid* is free software that is distributed under the GNU Lesser General Public License.
+
+*dbdroid* creates a mapping from Java classes to tables of a database, and from Java data types to SQL data types.
+
+dbdroid uses an XML configuration file that declares the DAOs (Data Access Object). Each DAO is associated with a Java class with the Entity annotation. It is this Java class that is mapped to a table in the database.
+So we have: a DAO => a Entity => a table.
 
 
-= Details =
+= Entity =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+= DAO =
+
+= XML configuration file =
