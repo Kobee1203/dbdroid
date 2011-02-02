@@ -36,7 +36,7 @@ public class MyEntity {
 
 == Entity fields ==
 
-Each field of a class annotated as Entity corresponds to a column of the table.
+Each field of a class annotated as Entity corresponds to a column of the table.`*`
 So if we have:
 {{{
 @Entity(name="my_entity")
@@ -46,8 +46,8 @@ public class MyEntity {
 }
 }}}
 Then the table "my_entity" will be defined as having two columns :
-* "myField1" whose data type is Integer, 
-* "myField2" whose data type is String.
+ * "myField1" whose data type is Integer, 
+ * "myField2" whose data type is String.
 
 == ID Annotation ==
 
