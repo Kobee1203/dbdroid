@@ -1,6 +1,6 @@
 <h1>TABLE OF CONTENT</h1>
 
-<wiki:toc max_depth="2" />
+<wiki:toc max_depth="3" />
 
 <hr/>
 
@@ -15,6 +15,7 @@
 *dbdroid* uses an XML configuration file that declares the DAOs (Data Access Object). Each DAO is associated with a Java class with the Entity annotation. It is this Java class that is mapped to a table in the database.
 So we have: a DAO => a Entity => a table.
 
+= DataBaseManager =
 
 = Entity =
 
@@ -45,6 +46,7 @@ public class MyEntity {
 Each field of a class annotated as Entity corresponds to a column of the table.
 
 So if we have:
+
 {{{
 @Entity(name="my_entity")
 public class MyEntity {
@@ -55,6 +57,7 @@ public class MyEntity {
     ...
 }
 }}}
+
 Then the table "my_entity" will be defined as having two columns :
  * "myField1" whose data type is Integer, 
  * "myField2" whose data type is String.
@@ -66,6 +69,7 @@ Do not forget to add fields accessors (getters / setters), they are used to writ
 If you overload the default constructor of the class, do not forget to add the default constructor because it is used to create an instance of the class when retrieving data from the database.
 
 So we have:
+
 {{{
 @Entity(name="my_entity")
 public class MyEntity {
@@ -147,4 +151,8 @@ public class MyEntity {
 
 = DAO =
 
+== AndroidDAO ==
+
 = XML configuration file =
+
+= Query =
