@@ -100,6 +100,51 @@ public class MyEntity {
 
 === ID Annotation ===
 
+It is possible to declare a field that represents the primary key. To do this, use the Id annotation.
+
+Finally, we have: 
+
+{{{
+@Entity(name="my_entity")
+public class MyEntity {
+    
+    @Id
+    private Long _id;
+    private int myField1;
+    private String myField2;
+    
+    // Default Constructor
+    public MyEntity() {
+    }
+    
+    public MyEntity(int myField1, String myField2) {
+        this.myField1 = myField1;
+        this.myField2 = myField2;
+    }
+
+    public Long get_id() {
+        return _id;
+    }
+    public void set_id(Long _id) {
+        this._id = _id;
+    }
+    
+    public int getMyField1() {
+        return myField1;
+    }
+    public void setMyField1(int myField1) {
+        this.myField1 = myField1;
+    }
+    
+    public String getMyField2() {
+        return myField2;
+    }
+    public void setMyField2(String myField2) {
+        this.myField2 = myField2;
+    }
+}
+}}}
+
 = DAO =
 
 = XML configuration file =
