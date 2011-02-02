@@ -62,6 +62,7 @@ Then the table "my_entity" will be defined as having two columns :
 === Default Constructor - Getter / Setter ===
 
 Do not forget to add fields accessors (getters / setters), they are used to write and read data.
+
 If you overload the default constructor of the class, do not forget to add the default constructor because it is used to create an instance of the class when retrieving data from the database.
 
 So we have:
