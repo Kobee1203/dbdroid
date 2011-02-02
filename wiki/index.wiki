@@ -1,5 +1,7 @@
-<p align="center">*Table of Contents*</p>
+<p align="center">*TABLE OF CONTENT*</p>
+<p align="center">
 <wiki:toc max_depth="1" />
+</p>
 
 = Introduction =
 
