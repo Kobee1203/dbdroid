@@ -1,6 +1,6 @@
 <h1>TABLE OF CONTENT</h1>
 
-<wiki:toc max_depth="1" />
+<wiki:toc max_depth="2" />
 
 <hr/>
 
@@ -40,6 +40,8 @@ public class MyEntity {
 
 == Entity fields ==
 
+=== Declaration ===
+
 Each field of a class annotated as Entity corresponds to a column of the table.
 
 So if we have:
@@ -57,7 +59,9 @@ Then the table "my_entity" will be defined as having two columns :
  * "myField1" whose data type is Integer, 
  * "myField2" whose data type is String.
 
-Do not forget to add fields accessors (get / set), they are used to write and read data.
+=== Default Constructor - Getter / Setter ===
+
+Do not forget to add fields accessors (getters / setters), they are used to write and read data.
 If you overload the default constructor of the class, do not forget to add the default constructor because it is used to create an instance of the class when retrieving data from the database.
 
 So we have:
@@ -93,7 +97,7 @@ public class MyEntity {
 }
 }}}
 
-== ID Annotation ==
+=== ID Annotation ===
 
 = DAO =
 
