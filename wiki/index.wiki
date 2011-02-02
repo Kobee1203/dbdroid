@@ -17,6 +17,7 @@ So we have: a DAO => a Entity => a table.
 
 = DataBaseManager =
 
+
 = Entity =
 
 == Entity Annotation ==
