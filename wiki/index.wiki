@@ -15,8 +15,6 @@
 *dbdroid* uses an XML configuration file that declares the DAOs (Data Access Object). Each DAO is associated with a Java class with the Entity annotation. It is this Java class that is mapped to a table in the database.
 So we have: a DAO => a Entity => a table.
 
-= DataBaseManager =
-
 To access a database, you must implement the abstract class DatabaseManager.
 Currently, There are only the library [dbdroid-sqlite http://code.google.com/p/dbdroid-sqlite/] which has an implementation. The class that implements DatabaseManager is SQLiteDataBaseManager, an implementation for the SQLite database.
 
