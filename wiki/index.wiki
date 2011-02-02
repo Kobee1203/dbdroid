@@ -14,6 +14,30 @@ So we have: a DAO => a Entity => a table.
 
 = Entity =
 
+== Entity Annotation ==
+
+To create an Entity, just add the 'Entity' annotation to a Java class
+
+{{{
+@Entity
+public class MyEntity {
+...
+}
+}}}
+
+You can add the 'name' attribute to the 'Entity' annotation to define the table name to create in the database.
+
+{{{
+@Entity(name="my_entity")
+public class MyEntity {
+...
+}
+}}}
+
+== Entity fields ==
+
+== ID Annotation ==
+
 = DAO =
 
 = XML configuration file =
