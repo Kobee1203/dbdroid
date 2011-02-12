@@ -155,7 +155,24 @@ public class MyEntity {
 
 = DAO =
 
-== AndroidDAO ==
+To access to data in database and retrieve an `Entity` object, you must create a DAO object.
+
+To create a DAO object, just create a Java class wich extends `AndroidDAO` class : 
+
+public class MyDao extends AndroidDAO<MyEntity> {
+
+    public MyDao(DataBaseManager dbManager) {
+        super(dbManager);
+    }
+
+}
+
+The DAO class inherits the following methods:
+- findAll:
+- findById:
+- saveOrUpdate (T entity):
+- delete (T entity):
+
 
 = XML configuration file =
 
