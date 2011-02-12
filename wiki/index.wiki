@@ -159,6 +159,7 @@ To access to data in database and retrieve an `Entity` object, you must create a
 
 To create a DAO object, just create a Java class wich extends `AndroidDAO` class : 
 
+{{{
 public class MyDao extends AndroidDAO<MyEntity> {
 
     public MyDao(DataBaseManager dbManager) {
@@ -166,6 +167,7 @@ public class MyDao extends AndroidDAO<MyEntity> {
     }
 
 }
+}}}
 
 The DAO class inherits the following methods:
 - findAll:
