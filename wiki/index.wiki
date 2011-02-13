@@ -170,10 +170,10 @@ public class MyDao extends AndroidDAO<MyEntity> {
 }}}
 
 The DAO class inherits the following methods:
-* findAll (): find all entities
-* findById (String id): find entity according to the id in argument
-* saveOrUpdate (T entity): save or update an entity
-* delete (T entity): delete an entity
+ * findAll (): find all entities
+ * findById (String id): find entity according to the id in argument
+ * saveOrUpdate (T entity): save or update an entity
+ * delete (T entity): delete an entity
 
 
 = XML configuration file =
