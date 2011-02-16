@@ -180,3 +180,6 @@ New methods can be added to the DAO class. For this it is recommended to use the
 = XML configuration file =
 
 = Query =
+
+The Query class is used to represent a query for a given Entity.
+After adding Expressions to an instance of Query, the implementation of the abstract class DatabaseManager can then run this query.
