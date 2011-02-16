@@ -175,6 +175,7 @@ The DAO class inherits the following methods:
  * saveOrUpdate (T entity): save or update an entity
  * delete (T entity): delete an entity
 
+New methods can be added to the DAO class. For this it is recommended to use the Query class.
 
 = XML configuration file =
 
