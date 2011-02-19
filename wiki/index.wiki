@@ -21,7 +21,7 @@ So we have: a DAO => a Entity => a table.
 To access a database, you must implement the abstract class `DatabaseManager`.
 Currently, There are only the library [http://code.google.com/p/dbdroid-sqlite/ dbdroid-sqlite] which has an implementation. The class that implements `DatabaseManager` is `SQLiteDataBaseManager`, an implementation for the SQLite database.
 
-=Entity=
+= Entity =
 
 == Entity Annotation ==
 
@@ -43,9 +43,9 @@ public class MyEntity {
 }
 }}}
 
- == Entity fields ==
+== Entity fields ==
 
-  === Declaration ===
+=== Declaration ===
 
 Each field of a class annotated as Entity corresponds to a column of the table.
 
@@ -66,7 +66,7 @@ Then the table "my_entity" will be defined as having two columns :
  * "myField1" whose data type is Integer, 
  * "myField2" whose data type is String.
 
-  === Default Constructor - Getter / Setter ===
+=== Default Constructor - Getter / Setter ===
 
 Do not forget to add fields accessors (getters / setters), they are used to write and read data.
 
@@ -106,7 +106,7 @@ public class MyEntity {
 }
 }}}
 
-  === ID Annotation ===
+=== ID Annotation ===
 
 It is possible to declare a field that represents the primary key. To do this, use the Id annotation.
 
@@ -192,7 +192,7 @@ To create new Expressions, just call one of the following static methods:
  * `createExpression(String name, Object val, DbDroidType type, Operator operator)`
  * `createLogicalExpression(Expression expression1, Expression expression2, LogicalOperator logicalOperator)`
 
- == Types ==
+== Types ==
 
 {{{
 public enum DbDroidType {
@@ -225,7 +225,7 @@ public enum DbDroidType {
 }
 }}}
 
- == Operators ==
+== Operators ==
 
 {{{
 public enum Operator {
@@ -245,7 +245,7 @@ public enum Operator {
 }
 }}}
 
- == Logical Operators ==
+== Logical Operators ==
 
 {{{
 public enum LogicalOperator {
