@@ -192,6 +192,8 @@ To create new Expressions, just call one of the following static methods:
  * `createExpression(String name, Object val, DbDroidType type, Operator operator)`
  * `createLogicalExpression(Expression expression1, Expression expression2, LogicalOperator logicalOperator)`
 
-= DbDroidType =
+= `DbDroidType` =
 
-= LogicalOperator =
+= `Operator` =
+
+= `LogicalOperator` =
