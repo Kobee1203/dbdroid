@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-	
+    
     <groupId>org.nds.dbdroid</groupId>
-    <artifactId>dbdroid</artifactId>
+    <artifactId>dbdroid-core</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <name>Database for Android (dbdroid) - pom parent</name>
+    <packaging>jar</packaging>
+    <name>Database for Android (dbdroid-core)</name>
 
 	<description></description>
 
@@ -27,42 +27,31 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
-
+	
 	<properties>
         <maven.version>2.2.1</maven.version>
     </properties>
-
-    <modules>
-        <module>dbdroid-core</module>
-        <module>dbdroid-sqlite</module>
-    </modules>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-              <groupId>com.google.android</groupId>
-              <artifactId>android</artifactId>
-              <version>2.1_r1</version>
-          	</dependency>
-            <dependency>
-                <groupId>com.google.android</groupId>
-                <artifactId>android-test</artifactId>
-                <version>2.1_r1</version>
-            </dependency>
-            <dependency>
+	
+    <dependencies>
+    	<dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>android</artifactId>
+			<version>1.5_r3</version>
+            <scope>provided</scope>
+        </dependency>
+    	<dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>4.8.1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.nds.logging</groupId>
-                <artifactId>nds-logging</artifactId>
-                <version>1.0.1</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-    
-    <build>
+		</dependency>
+		<dependency>
+			<groupId>org.nds.logging</groupId>
+			<artifactId>nds-logging</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+    </dependencies>
+
+	<build>
     	<extensions>
 			<extension>
 				<groupId>org.jvnet.wagon-svn</groupId>
@@ -70,21 +59,17 @@
 				<version>1.8</version>
 			</extension>
 		</extensions>
-		
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>com.jayway.maven.plugins.android.generation2</groupId>
-                    <artifactId>maven-android-plugin</artifactId>
-                    <version>2.8.3</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>2.3.2</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
+
         <plugins>
+			<plugin>
+				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
+				<artifactId>maven-android-plugin</artifactId>
+				<version>2.8.3</version>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+			</plugin>
             <plugin>
             	<groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
@@ -127,6 +112,38 @@
                     </execution>
                 </executions>
             </plugin>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.1</version>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<configuration>
+							<tasks>
+								<property name="maven.repo" value="${user.home}/.m2/repository" />
+								<echo message="Maven repo: ${maven.repo}" />
+								<echo message="filename: ${project.artifactId}-${project.version}.${project.packaging}" />
+								
+								<taskdef classname="net.bluecow.googlecode.ant.GoogleCodeUploadTask" classpath="${maven.repo}/net/bluecow/googlecode/ant/ant-googlecode-0.0.2.jar" name="gcupload" />
+								
+								<property file="build.credentials.properties" />
+	    						<fail unless="gc.username" message="Missing property 'gc.username' from file 'build.credentials.properties'." />
+	    						<fail unless="gc.password" message="Missing property 'gc.password' from file 'build.credentials.properties'." />
+								
+								<gcupload username="${gc.username}" password="${gc.password}" 
+                                          projectname="dbdroid" 
+                                          filename="target/${project.artifactId}-${project.version}.${project.packaging}" 
+                                          targetfilename="${project.artifactId}-${project.version}.${project.packaging}" 
+                                          summary="Version ${project.version} of ${project.artifactId}" 
+                                          labels="${project.version}, ${project.artifactId}, Database, Entity, DAO, Android, SQL, Sqlite, DatabaseManager, Query, Developer" />
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
         </plugins>
     </build>
 
