@@ -192,7 +192,7 @@ To create new Expressions, just call one of the following static methods:
  * `createExpression(String name, Object val, DbDroidType type, Operator operator)`
  * `createLogicalExpression(Expression expression1, Expression expression2, LogicalOperator logicalOperator)`
 
-== DbDroidType ==
+  == DbDroid Types ==
 
 {{{
 public enum DbDroidType {
@@ -225,6 +225,6 @@ public enum DbDroidType {
 }
 }}}
 
-== Operator ==
+== Operators ==
 
-== LogicalOperator ==
+== Logical Operators ==
