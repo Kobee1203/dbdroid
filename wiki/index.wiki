@@ -189,5 +189,9 @@ To create an instance of Query, simply call the method `createQuery (Class <?> e
 To add new Expressions in Query, simply call the method `add (Expression expression)` of the class Query.
 
 To create new Expressions, just call one of the following static methods:
- * createExpression (String name, Object val, Type DbDroidType, Operator operatior)
- * createLogicalExpression(Expression expression1, Expression expression2, LogicalOperator logicalOperator)
+ * `createExpression(String name, Object val, DbDroidType type, Operator operator)`
+ * `createLogicalExpression(Expression expression1, Expression expression2, LogicalOperator logicalOperator)`
+
+= DbDroidType =
+
+= LogicalOperator =
