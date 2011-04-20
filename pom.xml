@@ -144,6 +144,30 @@
 					</execution>
 				</executions>
 			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <source>1.5</source>
+                    <!-- 
+                    mvn install:install-file -Dpackaging=jar -DartifactId=UmlGraph
+                    -Dversion=5.4 -Dfile=/path/UmlGraph.jar -DgroupId=gr.spinellis -DgeneratePom=true
+                     -->
+                    <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
+                    <!--<doclet>gr.spinellis.umlgraph.doclet.UmlGraphDoc</doclet>-->
+                    <!-- <docletPath>/path/to/UmlGraph.jar</docletPath> -->
+                    <docletArtifact>
+                        <groupId>gr.spinellis</groupId>
+                        <artifactId>UmlGraph</artifactId>
+                        <version>5.4</version>
+                        <!--<version>4.6</version>-->
+                    </docletArtifact>
+                    <additionalparam>
+                        -operations -visibility
+                    </additionalparam>
+                    <useStandardDocletOptions>true</useStandardDocletOptions>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

@@ -6,7 +6,10 @@
 
 	<dbdroid:dao class="org.nds.dbdroid.dao.Dao1" />
 	<dbdroid:dao package="org.nds.dbdroid.dao" />
-
+    
+    <dbdroid:service class="org.nds.dbdroid.service.Service1" />
+    <dbdroid:service package="org.nds.dbdroid.service" />
+    
 	<dbdroid:properties>
 		<dbdroid:property name="dbdroid.show_query" value="true" />
 		<dbdroid:property name="dbdroid.generate">update</dbdroid:property>

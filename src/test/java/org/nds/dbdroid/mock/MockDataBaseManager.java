@@ -1,6 +1,7 @@
 package org.nds.dbdroid.mock;
 
 import java.io.InputStream;
+import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class MockDataBaseManager extends DataBaseManager {
 
     private static final Logger log = LoggerFactory.getLogger(MockDataBaseManager.class);
 
-    private static final Map<Class<?>, Map<String, Object>> entities = new HashMap<Class<?>, Map<String, Object>>();
+    private static final Map<Class<?>, Map<Serializable, Object>> entities = new HashMap<Class<?>, Map<Serializable, Object>>();
 
     public MockDataBaseManager(InputStream config) throws DBDroidException {
         super(config);
@@ -74,7 +75,7 @@ public class MockDataBaseManager extends DataBaseManager {
 
         List<E> list = null;
 
-        Map<String, Object> objects = entities.get(entityClass);
+        Map<Serializable, Object> objects = entities.get(entityClass);
         if (objects != null) {
             list = new ArrayList<E>();
             for (Object o : objects.values()) {
@@ -86,14 +87,14 @@ public class MockDataBaseManager extends DataBaseManager {
     }
 
     @Override
-    public <E> E findById(String id, Class<E> entityClazz) {
+    public <E> E findById(Serializable id, Class<E> entityClazz) {
         log.debug("## find by id " + id);
 
         E object = null;
 
-        Map<String, Object> objects = entities.get(entityClazz);
+        Map<Serializable, Object> objects = entities.get(entityClazz);
         if (objects != null) {
-            object = (E) objects.get(id);
+            object = (E) objects.get(String.valueOf(id));
         }
 
         return object;
@@ -103,9 +104,9 @@ public class MockDataBaseManager extends DataBaseManager {
     public <E> E saveOrUpdate(E entity) {
         log.debug("## save or update (" + entity + ")");
 
-        Map<String, Object> objects = entities.get(entity.getClass());
+        Map<Serializable, Object> objects = entities.get(entity.getClass());
         if (objects == null) {
-            objects = new HashMap<String, Object>();
+            objects = new HashMap<Serializable, Object>();
         }
         String id = AnnotationUtils.getPropertyFieldValueAsString(entity, Id.class);
         objects.put(id, entity);

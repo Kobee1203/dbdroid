@@ -1,5 +1,6 @@
 package org.nds.dbdroid.query;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import org.nds.dbdroid.type.TypedValue;
 
 public class Query {
 
-    private final DataBaseManager dataBaseManager;
+    private transient final DataBaseManager dataBaseManager;
 
     private final LinkedList<Expression> expressions = new LinkedList<Expression>();
 
@@ -51,7 +52,7 @@ public class Query {
         return sb.toString();
     }
 
-    public static SimpleExpression createExpression(String name, Object val, DbDroidType type, Operator operatior) {
+    public static SimpleExpression createExpression(String name, Serializable val, DbDroidType type, Operator operatior) {
         SimpleExpression condition = new SimpleExpression(name, new TypedValue(val, type), operatior);
         return condition;
     }
