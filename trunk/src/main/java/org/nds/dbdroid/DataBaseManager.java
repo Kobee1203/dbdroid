@@ -6,8 +6,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +21,7 @@ import javax.xml.parsers.SAXParserFactory;
 import org.nds.dbdroid.annotation.Entity;
 import org.nds.dbdroid.config.ConfigXMLErrorHandler;
 import org.nds.dbdroid.config.ConfigXMLHandler;
-import org.nds.dbdroid.dao.AndroidDAO;
+import org.nds.dbdroid.dao.IAndroidDAO;
 import org.nds.dbdroid.exception.DBDroidException;
 import org.nds.dbdroid.helper.EntityHelper;
 import org.nds.dbdroid.query.LogicalExpression;
@@ -28,6 +30,7 @@ import org.nds.dbdroid.query.Operator;
 import org.nds.dbdroid.query.Query;
 import org.nds.dbdroid.query.QueryValueResolver;
 import org.nds.dbdroid.query.SimpleExpression;
+import org.nds.dbdroid.service.IAndroidService;
 import org.nds.dbdroid.type.DataType;
 import org.nds.logging.Logger;
 import org.nds.logging.LoggerFactory;
@@ -83,9 +86,12 @@ public abstract class DataBaseManager {
     private ClassLoader classLoader;
 
     private Properties properties;
-    private Map<Class<? extends AndroidDAO<?>>, AndroidDAO<?>> daos = new HashMap<Class<? extends AndroidDAO<?>>, AndroidDAO<?>>();
+    private Map<Class<? extends IAndroidDAO<?, Serializable>>, IAndroidDAO<?, Serializable>> daos = new HashMap<Class<? extends IAndroidDAO<?, Serializable>>, IAndroidDAO<?, Serializable>>();
+    private Map<Class<? extends IAndroidService>, IAndroidService> services = new HashMap<Class<? extends IAndroidService>, IAndroidService>();
 
-    private final Map<Class<?>, AndroidDAO<?>> daoFromEntity = new HashMap<Class<?>, AndroidDAO<?>>();
+    private final List<Class<?>> entities = new ArrayList<Class<?>>();
+
+    private final Map<Class<?>, IAndroidDAO<?, Serializable>> daoFromEntity = new HashMap<Class<?>, IAndroidDAO<?, Serializable>>();
 
     private final Map<String, Class<?>> entityFromTableName = new HashMap<String, Class<?>>();
 
@@ -148,12 +154,13 @@ public abstract class DataBaseManager {
             XMLReader reader = parser.getXMLReader();
 
             /** Create handler to handle XML Tags ( extends DefaultHandler ) */
-            ConfigXMLHandler configXMLHandler = new ConfigXMLHandler(this, classLoader);
+            ConfigXMLHandler configXMLHandler = getConfigXMLHandler(this, classLoader);
             reader.setErrorHandler(new ConfigXMLErrorHandler());
             reader.setContentHandler(configXMLHandler);
             reader.parse(new InputSource(config));
 
             daos = configXMLHandler.getDaos();
+            services = configXMLHandler.getServices();
             properties = configXMLHandler.getProperties();
         } catch (Exception e) {
             throw new DBDroidException("XML Pasing Exception = " + e, e);
@@ -164,17 +171,22 @@ public abstract class DataBaseManager {
         processProperties();
     }
 
+    protected ConfigXMLHandler getConfigXMLHandler(DataBaseManager dataBaseManager, ClassLoader classLoader) {
+        return new ConfigXMLHandler(this, classLoader);
+    }
+
     private void initializeMaps() throws DBDroidException {
         try {
-            for (Map.Entry<Class<? extends AndroidDAO<?>>, AndroidDAO<?>> e : daos.entrySet()) {
-                AndroidDAO<?> dao = e.getValue();
+            for (Map.Entry<Class<? extends IAndroidDAO<?, Serializable>>, IAndroidDAO<?, Serializable>> e : daos.entrySet()) {
+                IAndroidDAO<?, Serializable> dao = e.getValue();
                 Class<?> entityClass = dao.getEntityClass();
                 log.debug("entityClass: " + entityClass);
                 String tableName = EntityHelper.getTableName(entityClass);
                 log.debug("Table name: " + tableName);
                 Field[] fields = EntityHelper.getFields(entityClass);
-                log.debug("fields: " + fields);
+                log.debug("fields: " + Arrays.toString(fields));
 
+                entities.add(entityClass);
                 daoFromEntity.put(entityClass, dao);
                 entityFromTableName.put(tableName, entityClass);
                 tableNameFromEntity.put(entityClass, tableName);
@@ -219,7 +231,7 @@ public abstract class DataBaseManager {
     }
 
     @SuppressWarnings("unchecked")
-    public final <T extends AndroidDAO<?>> T getDAO(Class<T> daoClass) {
+    public final <T extends IAndroidDAO<?, ?>> T getDAO(Class<T> daoClass) {
         T dao = (T) daos.get(daoClass);
         if (dao == null) {
             throw new NullPointerException("DAO class '" + daoClass + "' not found. Verify the XML dbdroid configuration.");
@@ -227,19 +239,31 @@ public abstract class DataBaseManager {
         return dao;
     }
 
-    protected final AndroidDAO<?> getDAOFromEntity(Class<?> entity) {
+    public <T extends IAndroidService> T getService(Class<T> serviceClass) {
+        T service = (T) services.get(serviceClass);
+        if (service == null) {
+            throw new NullPointerException("Service class '" + serviceClass + "' not found. Verify the XML dbdroid configuration.");
+        }
+        return service;
+    }
+
+    protected final List<Class<?>> getEntities() {
+        return entities;
+    }
+
+    protected final IAndroidDAO<?, Serializable> getDAOFromEntity(Class<?> entity) {
         return daoFromEntity.get(entity);
     }
 
-    public String getTableNameFromEntity(Class<?> entity) {
+    protected final String getTableNameFromEntity(Class<?> entity) {
         return tableNameFromEntity.get(entity);
     }
 
-    protected Class<?> getEntityFromTableName(String tableName) {
+    protected final Class<?> getEntityFromTableName(String tableName) {
         return entityFromTableName.get(tableName);
     }
 
-    protected Field[] getFieldsFromEntity(Class<?> entity) {
+    protected final Field[] getFieldsFromEntity(Class<?> entity) {
         return fieldsFromEntity.get(entity);
     }
 
@@ -269,8 +293,8 @@ public abstract class DataBaseManager {
 
     private void generateDataBase(String type) throws DBDroidException {
         try {
-            for (Map.Entry<Class<? extends AndroidDAO<?>>, AndroidDAO<?>> e : daos.entrySet()) {
-                AndroidDAO<?> dao = e.getValue();
+            for (Map.Entry<Class<? extends IAndroidDAO<?, Serializable>>, IAndroidDAO<?, Serializable>> e : daos.entrySet()) {
+                IAndroidDAO<?, Serializable> dao = e.getValue();
                 Class<?> entityClass = dao.getEntityClass();
                 log.debug("entityClass: " + entityClass);
                 String tableName = tableNameFromEntity.get(entityClass);
@@ -479,7 +503,7 @@ public abstract class DataBaseManager {
      *            : {@link Entity} class to find
      * @return row converted to {@link Entity} object E
      */
-    public abstract <E> E findById(String id, Class<E> entityClass);
+    public abstract <E> E findById(Serializable id, Class<E> entityClass);
 
     /**
      * Saves an {@link Entity} object

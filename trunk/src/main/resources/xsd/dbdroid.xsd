@@ -8,6 +8,7 @@
 		<xsd:complexType>
 			<xsd:sequence>
 				<xsd:element ref="dao" maxOccurs="unbounded" />
+                <xsd:element ref="service" maxOccurs="unbounded" />
 				<xsd:element ref="properties" maxOccurs="1" />
 			</xsd:sequence>
 		</xsd:complexType>
@@ -18,11 +19,22 @@
 			<xsd:attribute name="class" type="xsd:string" />
 			<xsd:attribute name="package" type="xsd:string" />
 		</xsd:complexType>
-		<xsd:key name="att">
+		<xsd:key name="dao-att">
 			<xsd:selector xpath="." />
 			<xsd:field xpath="@class|@package" />
 		</xsd:key>
 	</xsd:element>
+
+    <xsd:element name="service">
+        <xsd:complexType>
+            <xsd:attribute name="class" type="xsd:string" />
+            <xsd:attribute name="package" type="xsd:string" />
+        </xsd:complexType>
+        <xsd:key name="service-att">
+            <xsd:selector xpath="." />
+            <xsd:field xpath="@class|@package" />
+        </xsd:key>
+    </xsd:element>
 
 	<xsd:element name="properties">
 		<xsd:complexType>
