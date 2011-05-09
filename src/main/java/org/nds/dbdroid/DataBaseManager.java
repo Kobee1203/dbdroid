@@ -300,7 +300,7 @@ public abstract class DataBaseManager {
                 String tableName = tableNameFromEntity.get(entityClass);
                 log.debug("Table name: " + tableName);
                 Field[] fields = fieldsFromEntity.get(entityClass);
-                log.debug("fields: " + fields);
+                log.debug("fields: " + Arrays.toString(fields));
 
                 if (CREATE_VALUE.equalsIgnoreCase(type)) {
                     onCreateTable(tableName, fields);
