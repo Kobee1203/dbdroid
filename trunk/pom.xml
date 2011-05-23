@@ -114,13 +114,13 @@
             </plugin>
 			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>
-				<version>1.1</version>
+				<version>1.6</version>
 				<executions>
 					<execution>
 						<phase>install</phase>
 						<configuration>
 							<tasks>
-								<property name="maven.repo" value="${user.home}/.m2/repository" />
+								<property name="maven.repo" value="${settings.localRepository}" />
 								<echo message="Maven repo: ${maven.repo}" />
 								<echo message="filename: ${project.artifactId}-${project.version}.${project.packaging}" />
 								
