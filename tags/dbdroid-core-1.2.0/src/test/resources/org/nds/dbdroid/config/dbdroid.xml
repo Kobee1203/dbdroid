@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dbdroid:dbdroid-configuration
+	xmlns:dbdroid="http://www.nds.org/dbdroid" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.nds.org/dbdroid dbdroid.xsd">
+
+	<dbdroid:dao class="org.nds.dbdroid.dao.Dao1" />
+	<dbdroid:dao package="org.nds.dbdroid.dao" />
+    
+    <dbdroid:service class="org.nds.dbdroid.service.Service1" />
+    <dbdroid:service package="org.nds.dbdroid.service" />
+    
+	<dbdroid:properties>
+		<dbdroid:property name="dbdroid.show_query" value="true" />
+		<dbdroid:property name="dbdroid.generate">update</dbdroid:property>
+		<dbdroid:property name="dbdroid.script" value="classpath:/org/nds/dbdroid/script/script.txt" />
+	</dbdroid:properties>
+</dbdroid:dbdroid-configuration>
+
