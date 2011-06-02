@@ -1,0 +1,30 @@
+package org.nds.dbdroid.type;
+
+public enum DbDroidType {
+    BOOLEAN,
+    LONG,
+    SHORT,
+    INTEGER,
+    BYTE,
+    FLOAT,
+    DOUBLE,
+    CHARACTER,
+    STRING,
+    TIMESTAMP,
+    TIME,
+    DATE,
+    BIG_DECIMAL,
+    BIG_INTEGER,
+    LOCALE,
+    CALENDAR,
+    TIMEZONE,
+    OBJECT,
+    CLASS,
+    BINARY,
+    WRAPPER_BINARY,
+    CHAR_ARRAY,
+    CHARACTER_ARRAY,
+    BLOB,
+    CLOB,
+    SERIALIZABLE;
+}
