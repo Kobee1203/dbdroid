@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+			targetNamespace="http://www.nds.org/dbdroid"
+			xmlns="http://www.nds.org/dbdroid"
+			elementFormDefault="qualified">
+
+	<xsd:element name="dbdroid-configuration">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="dao" maxOccurs="unbounded" />
+                <xsd:element ref="service" maxOccurs="unbounded" />
+				<xsd:element ref="properties" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="dao">
+		<xsd:complexType>
+			<xsd:attribute name="class" type="xsd:string" />
+			<xsd:attribute name="package" type="xsd:string" />
+		</xsd:complexType>
+		<xsd:key name="dao-att">
+			<xsd:selector xpath="." />
+			<xsd:field xpath="@class|@package" />
+		</xsd:key>
+	</xsd:element>
+
+    <xsd:element name="service">
+        <xsd:complexType>
+            <xsd:attribute name="class" type="xsd:string" />
+            <xsd:attribute name="package" type="xsd:string" />
+        </xsd:complexType>
+        <xsd:key name="service-att">
+            <xsd:selector xpath="." />
+            <xsd:field xpath="@class|@package" />
+        </xsd:key>
+    </xsd:element>
+
+	<xsd:element name="properties">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="property" minOccurs="1" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="property">
+		<xsd:complexType mixed="true">
+			<xsd:attribute name="name" type="xsd:string" use="required" />
+			<xsd:attribute name="value" type="xsd:string" use="optional" />
+		</xsd:complexType>
+	</xsd:element>
+
+</xsd:schema>
