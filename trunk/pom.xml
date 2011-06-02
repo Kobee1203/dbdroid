@@ -4,11 +4,11 @@
     
     <groupId>org.nds.dbdroid</groupId>
     <artifactId>dbdroid-core</artifactId>
-    <version>1.2.1-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Database for Android (dbdroid-core)</name>
 
-	<description />
+	<description></description>
 
 	<developers>
 		<developer>
@@ -137,7 +137,12 @@
 	    						<fail unless="gc.username" message="Missing property 'gc.username' from file 'build.credentials.properties'." />
 	    						<fail unless="gc.password" message="Missing property 'gc.password' from file 'build.credentials.properties'." />
 								
-								<gcupload username="${gc.username}" password="${gc.password}" projectname="dbdroid" filename="target/${project.artifactId}-${project.version}.${project.packaging}" targetfilename="${project.artifactId}-${project.version}.${project.packaging}" summary="Version ${project.version} of ${project.artifactId}" labels="${project.version}, ${project.artifactId}, Database, Entity, DAO, Android, SQL, Sqlite, DatabaseManager, Query, Developer" />
+								<gcupload username="${gc.username}" password="${gc.password}" 
+                                          projectname="dbdroid" 
+                                          filename="target/${project.artifactId}-${project.version}.${project.packaging}" 
+                                          targetfilename="${project.artifactId}-${project.version}.${project.packaging}" 
+                                          summary="Version ${project.version} of ${project.artifactId}" 
+                                          labels="${project.version}, ${project.artifactId}, Database, Entity, DAO, Android, SQL, Sqlite, DatabaseManager, Query, Developer" />
 							</tasks>
 						</configuration>
 						<goals>
