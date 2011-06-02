@@ -65,10 +65,8 @@ public class DefaultTypeConverterTest extends TestCase {
         assertEquals(Float.valueOf("7.1"), DefaultTypeConverter.INSTANCE.convert(Float.class, Float.valueOf("7.1")));
         assertEquals(Double.valueOf("123.123"), DefaultTypeConverter.INSTANCE.convert(Double.class, Double.valueOf("123.123")));
         assertEquals(Double.valueOf("123.123"), DefaultTypeConverter.INSTANCE.convert(Double.class, Double.valueOf("123.123")));
-        assertEquals(new BigInteger("1234567890123456789"),
-                DefaultTypeConverter.INSTANCE.convert(BigInteger.class, new BigInteger("1234567890123456789")));
-        assertEquals(new BigDecimal("12345678901234567890.12345678901234567890"),
-                DefaultTypeConverter.INSTANCE.convert(BigDecimal.class, new BigDecimal("12345678901234567890.12345678901234567890")));
+        assertEquals(new BigInteger("1234567890123456789"), DefaultTypeConverter.INSTANCE.convert(BigInteger.class, new BigInteger("1234567890123456789")));
+        assertEquals(new BigDecimal("12345678901234567890.12345678901234567890"), DefaultTypeConverter.INSTANCE.convert(BigDecimal.class, new BigDecimal("12345678901234567890.12345678901234567890")));
         Date date = new Date();
         assertEquals(date, DefaultTypeConverter.INSTANCE.convert(Date.class, date));
         // assertEquals(new Duration("P25D"), DefaultTypeConverter.INSTANCE.convert(Duration.class, new Duration("P25D")));
@@ -86,8 +84,7 @@ public class DefaultTypeConverterTest extends TestCase {
         assertEquals("7.1", DefaultTypeConverter.INSTANCE.convert(String.class, Float.valueOf("7.1")));
         assertEquals("123.123", DefaultTypeConverter.INSTANCE.convert(String.class, Double.valueOf("123.123")));
         assertEquals("1234567890123456789", DefaultTypeConverter.INSTANCE.convert(String.class, new BigInteger("1234567890123456789")));
-        assertEquals("12345678901234567890.12345678901234567890",
-                DefaultTypeConverter.INSTANCE.convert(String.class, new BigDecimal("12345678901234567890.12345678901234567890")));
+        assertEquals("12345678901234567890.12345678901234567890", DefaultTypeConverter.INSTANCE.convert(String.class, new BigDecimal("12345678901234567890.12345678901234567890")));
         Date date = new Date();
         assertEquals(ISO8601DateFormat.format(date), DefaultTypeConverter.INSTANCE.convert(String.class, date));
         // assertEquals("P0Y25D", DefaultTypeConverter.INSTANCE.convert(String.class, new Duration("P0Y25D")));
@@ -118,8 +115,7 @@ public class DefaultTypeConverterTest extends TestCase {
         assertEquals(Float.valueOf("7.1"), DefaultTypeConverter.INSTANCE.convert(Float.class, "7.1"));
         assertEquals(Double.valueOf("123.123"), DefaultTypeConverter.INSTANCE.convert(Double.class, "123.123"));
         assertEquals(new BigInteger("1234567890123456789"), DefaultTypeConverter.INSTANCE.convert(BigInteger.class, "1234567890123456789"));
-        assertEquals(new BigDecimal("12345678901234567890.12345678901234567890"),
-                DefaultTypeConverter.INSTANCE.convert(BigDecimal.class, "12345678901234567890.12345678901234567890"));
+        assertEquals(new BigDecimal("12345678901234567890.12345678901234567890"), DefaultTypeConverter.INSTANCE.convert(BigDecimal.class, "12345678901234567890.12345678901234567890"));
         GregorianCalendar cal = new GregorianCalendar();
         cal.set(Calendar.YEAR, 2004);
         cal.set(Calendar.MONTH, 3);
