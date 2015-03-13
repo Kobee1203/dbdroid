@@ -1,0 +1,1 @@
+object-relational mapping (ORM) library for Android, providing a framework for mapping an object-oriented domain model to a traditional relational database.
